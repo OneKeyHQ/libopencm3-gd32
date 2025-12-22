@@ -268,17 +268,6 @@ void mpu_setup_boot_region(void) {
   mpu_init_struct.instruction_accessable = MPU_INSTRUCTION_ACCESS_DISABLE;
   mpu_region_config(&mpu_init_struct);
 
-  /* configure peripheral dma region as region 5, 8KB of size, R/W never
-  and execute never region */
-  //   gd32 has diffent search scopes commented
-  mpu_init_struct.enable = MPU_REGION_ENABLE;
-  mpu_init_struct.base_address = BOOT_PERIPH_DMA_BASE_ADDRESS;
-  mpu_init_struct.region_size = BOOT_PERIPH_DMA_SIZE;
-  mpu_init_struct.access_permission = MPU_REGION_PRIV_DISABLE_USER_DISABLE;
-  mpu_init_struct.number = MPU_REGION_NUMBER_5;
-  mpu_init_struct.instruction_accessable = MPU_INSTRUCTION_ACCESS_DISABLE;
-  mpu_region_config(&mpu_init_struct);
-
   /* enable MPU */
   mpu_enable(MPU_HFNMI_DISABLE_PRIVDEF_ENABLE);
 }
@@ -353,23 +342,12 @@ void mpu_setup_firm_region(void) {
   mpu_init_struct.instruction_accessable = MPU_INSTRUCTION_ACCESS_DISABLE;
   mpu_region_config(&mpu_init_struct);
 
-  /* configure peripheral dma region as region 5, 8KB of size, R/W never
-  and
-   * execute never region */
-  mpu_init_struct.enable = MPU_REGION_ENABLE;
-  mpu_init_struct.base_address = FIRM_PERIPH_DMA_BASE_ADDRESS;
-  mpu_init_struct.region_size = FIRM_PERIPH_DMA_SIZE;
-  mpu_init_struct.access_permission = MPU_REGION_PRIV_DISABLE_USER_DISABLE;
-  mpu_init_struct.number = MPU_REGION_NUMBER_5;
-  mpu_init_struct.instruction_accessable = MPU_INSTRUCTION_ACCESS_DISABLE;
-  mpu_region_config(&mpu_init_struct);
-
-  /* configure peripheral syscfg region as region 6, 1KB of size, Read only and
+  /* configure peripheral syscfg region as region 5, 1KB of size, Read only and
    * execute never region */
   mpu_init_struct.enable = MPU_REGION_ENABLE;
   mpu_init_struct.base_address = FIRM_PERIPH_SYSCFG_BASE_ADDRESS;
   mpu_init_struct.region_size = FIRM_PERIPH_SYSCFG_SIZE;
-  mpu_init_struct.number = MPU_REGION_NUMBER_6;
+  mpu_init_struct.number = MPU_REGION_NUMBER_5;
   mpu_init_struct.instruction_accessable =
       MPU_REGION_PRIV_READ_ONLY_USER_READ_ONLY;
   mpu_region_config(&mpu_init_struct);
