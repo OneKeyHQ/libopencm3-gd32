@@ -38,7 +38,10 @@ LGPL License Terms @ref lgpl_license
 #ifndef __USB_PRIVATE_H
 #define __USB_PRIVATE_H
 
+/* Allow override via compiler flag -DMAX_USER_CONTROL_CALLBACK=N */
+#ifndef MAX_USER_CONTROL_CALLBACK
 #define MAX_USER_CONTROL_CALLBACK	4
+#endif
 #define MAX_USER_SET_CONFIG_CALLBACK	4
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
